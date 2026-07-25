@@ -41,6 +41,18 @@ $('#panicBtn').addEventListener('click', () => {
   setTimeout(() => { $('#panicBtn').innerHTML = 'PANIC <span>↗</span>'; }, 1800);
 });
 
+$('#copyCaBtn').addEventListener('click', async () => {
+  const address = $('#contractAddress').textContent;
+  try {
+    await navigator.clipboard.writeText(address);
+    $('#copyCaBtn').textContent = 'COPIED ✓';
+    showToast('CONTRACT ADDRESS COPIED');
+    setTimeout(() => { $('#copyCaBtn').textContent = 'COPY'; }, 1800);
+  } catch {
+    showToast('COPY FAILED — SELECT THE CA MANUALLY');
+  }
+});
+
 const quotes = [
   'Price is what you pay.<br><span>Meme is what you get.</span>',
   'Be greedy when others<br><span>close the browser.</span>',
